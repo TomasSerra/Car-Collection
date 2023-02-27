@@ -1,0 +1,82 @@
+$primary-color: #FFB703;
+$background-color: #111111; 
+$background-secondary-color: #282828;
+$card-radius: 10px;
+
+*{
+    overflow-x: hidden;
+}
+
+html{
+    background-color: $background-color;
+}
+
+.home-container{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    
+    header{
+        color: $background-color;
+        display: flex;
+        position: fixed;
+        justify-content: space-around;
+        background-color: $primary-color;
+        width: 100%;
+        height: fit-content;
+        top: 0;
+        align-items: center;
+    }
+
+    section{
+        padding-left: 15px;
+
+        .title{
+            font-size: 35px;
+            margin-top: 30%;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        hr{
+            size: 5px;
+        }
+
+        .cards-container{
+            display: flex;
+            justify-content:start;
+            flex-wrap: wrap;
+
+            .card{
+                padding: 1.5vw;
+                border-radius: $card-radius;
+                background-color: $background-secondary-color;
+                color: white;
+                width: min-content;
+                margin-top: 20px;
+                margin-right: 8px;
+    
+                h2{
+                    width: 95%;
+                    font-size: 13px;
+                }
+
+                p{
+                    font-size: 10px;
+                    margin-bottom: 0;
+                }
+    
+                .image{
+                    height: 40vw;
+                    width: 26vw;
+                    background-image: url(../../img/nissan1.jpeg);
+                    background-size:cover;
+                    background-repeat: no-repeat;
+                    border-radius: $card-radius;
+                }
+            }
+        }
+
+
+    }
+}
