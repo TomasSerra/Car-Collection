@@ -45,6 +45,10 @@ export default function Component(){
                     <label>Purchase date</label>
                     <input id={"date"} type={"date"}/>
                 </div>
+                <div className="input-container">
+                    <label>Owner</label>
+                    <input id={"owner"}/>
+                </div>
                 <button className="add-btn">ADD CAR</button>
             </div>
             
