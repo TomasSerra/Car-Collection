@@ -10,7 +10,7 @@ export default function Component(){
         <div className="home-container">
             <header>
                 <GrMenu size="2rem"/>
-                <h2>Car Collection</h2>
+                <h2>Hot Collection</h2>
                 <GrFormAdd size="2.5rem"/>
             </header>
             <section>

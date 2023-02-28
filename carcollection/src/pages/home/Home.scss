@@ -26,6 +26,7 @@ html{
         height: fit-content;
         top: 0;
         align-items: center;
+        z-index: 2;
     }
 
     section{
@@ -55,15 +56,23 @@ html{
                 width: min-content;
                 margin-top: 20px;
                 margin-right: 8px;
+                position: relative;
     
                 h2{
                     width: 95%;
                     font-size: 13px;
+                    margin-bottom: 5vw;
                 }
 
                 p{
                     font-size: 10px;
-                    margin-bottom: 0;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    background-color: #2e950e;
+                    padding: 3px 0;
                 }
     
                 .image{
