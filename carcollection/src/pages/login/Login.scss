@@ -1,0 +1,95 @@
+$primary-color: #FFB703;
+$background-color: #111111; 
+$background-secondary-color: #282828;
+
+html{
+    background-color: $primary-color;
+    height: 100%;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $background-color;
+    justify-content: center;
+    height: 100vh;
+
+    h2{
+        font-size: 45px;
+        position: absolute;
+        top: 50px;
+    }
+
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 80%;
+        position: relative;
+
+        input{
+            width: 100%;
+            outline: none;
+            height: 35px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid $background-color;
+            font-size: 20px;
+            margin-top: 15%;
+        }
+
+        label{
+            font-size: 20px;
+            position: absolute;
+            bottom: 10px;
+            pointer-events: none;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        input:focus + label, input:valid + label{
+            transform: translateY(-25px);
+        }
+    }
+
+    .forget-password{
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        font-weight: bold;
+        margin-top: 5%;
+    }
+
+    .forget-password:active{
+        color: #282828;
+    }
+
+    .login-btn{
+        background-color: $background-color;
+        color: white;
+        border: none;
+        border-radius: 100px;
+        margin-top: 15%;
+        font-size: 20px;
+        padding: 15px 35%;
+        font-weight: bold;
+    }
+
+    .login-btn:active{
+        background-color:#282828;
+    }
+
+    .create-account{
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        position: absolute;
+        bottom: 30px;
+        font-weight: bold;
+    }
+
+    .create-account:active{
+        color: #282828;
+    }
+}
