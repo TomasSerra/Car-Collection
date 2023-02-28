@@ -1,0 +1,223 @@
+$primary-color: #FFB703;
+$background-color: #111111; 
+$background-secondary-color: #282828;
+
+*{
+    overflow-x: hidden;
+}
+
+html{
+    background-color: $background-color;
+}
+
+.add-container{
+    padding: 0;
+    padding-top: 60px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    .back-button{
+        position: absolute;
+        color: $primary-color;
+        background-color: rgba(255, 0, 0, 0);
+        border: none;
+        font-size: 20px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .back-button:active{
+        color: #8d6500;
+    }
+
+    input{
+        text-align: center;
+        background-color: $background-secondary-color;
+        border-style: none;
+        border-radius: 10px;
+        width: 75%;
+        height: 40px;
+        font-size: 17px;
+        color: white;
+        outline: none;
+        padding-right: 10px;
+    }
+
+    #title{
+        height: 50px;
+        font-size: 22px;
+    }
+
+
+    label{
+        text-align: left;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .image-container{
+        margin-top: 20px;
+        background-color: $background-secondary-color;
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        position: relative;
+
+        .image{
+            position: absolute;
+            background-color: #959595;
+            height: 85%;
+            width: 85%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            text-align: center;
+            background-image: url(../../img/image-icon.png);
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-position-y: 40px;
+
+
+            .upload-btn{
+                color: white;
+                position: relative;
+                background-color: #666666;
+                width: 80%;
+                margin-bottom: 15px;
+                border-radius: 100px;
+                padding: 5px 0;
+    
+                input{
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    opacity: 0;
+                    
+                }
+            }
+
+            .upload-btn:active{
+                background-color: #404040;
+            }
+        }
+        
+    }
+
+    .inputs-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        padding: 0;
+        margin-top: 10px;
+
+        .input-container{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            margin-top: 15px;
+
+            input{
+                text-align: start;
+                width: 96%;
+                padding: 0;
+                margin-top: 5px;
+                padding-left: 10px;
+            }
+        }
+
+        .input-container-row{
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: end;
+            margin-top: 15px;
+
+            .column1{
+                width: 80%;
+
+                input{
+                    text-align: start;
+                    width: 96%;
+                    padding: 0;
+                    margin-top: 5px;
+                    padding-left: 10px;
+                }
+            }
+
+            .column2{
+                width: 15%;
+                display: flex;
+                justify-content: end;
+
+                #collectionColor{
+                    text-align: start;
+                    width: 100%;
+                    padding: 2px 6px;
+                    margin-top: 5px;
+                }
+
+            }
+
+            .column3{
+                width: 65%;
+                
+                input{
+                    text-align: start;
+                    width: 94%;
+                    padding: 0;
+                    margin-top: 5px;
+                    padding-left: 10px;
+                }
+            }
+
+            .column4{
+                width: 30%;
+
+                input{
+                    text-align: start;
+                    padding: 0;
+                    margin-top: 5px;
+                    padding-left: 10px;
+                    width: 89%;
+                }
+            }
+        }
+    }
+
+    .add-btn{
+        background-color: $primary-color;
+        border-style: none;
+        border-radius: 100px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 15px 30%;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .add-btn:active{
+        background-color: #c89002;
+    }
+
+}
