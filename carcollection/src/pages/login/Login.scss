@@ -14,12 +14,6 @@ html{
     color: $background-color;
     justify-content: center;
     height: 100vh;
-    background-image: url(../../img/pattern.png);
-    background-repeat: repeat;
-    background-size: 45%;
-    background-position-y: -25px;
-    animation: moving 600s linear infinite;
-
 
     h2{
         font-size: 11vw;
@@ -41,6 +35,7 @@ html{
             border-bottom: 2px solid $background-color;
             font-size: 20px;
             margin-top: 15%;
+            border-radius: 0;
         }
 
         label{
@@ -53,7 +48,7 @@ html{
         }
 
         input:focus + label, input:valid + label{
-            transform: translateY(-25px);
+            transform: translateY(-30px);
         }
     }
 
@@ -63,6 +58,7 @@ html{
         text-decoration: underline;
         font-weight: bold;
         margin-top: 10%;
+        color: $background-color;
     }
 
     .forget-password:active{
@@ -93,6 +89,7 @@ html{
         bottom: 30px;
         font-weight: bold;
         padding: 5px 9px;
+        color: $background-color;
     }
 
     .create-account:active{
@@ -115,12 +112,4 @@ html{
         }
     }
 
-}
-
-@keyframes moving {
-    100%{
-        background-position-x: 15000px;
-        background-position-y: -10000px;
-    }
-    
 }
