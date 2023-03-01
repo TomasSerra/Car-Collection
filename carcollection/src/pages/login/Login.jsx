@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import './Login.scss';
 import { auth } from "../../firebase"
 
-export default function Component(){
+export default function Login(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [warning, setWarning] = useState('');
@@ -18,7 +18,7 @@ export default function Component(){
         if( email != "" && password != ""){
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential)
+                props.handlePage(2)
             })
             .catch((error) =>{
                 setWarning(extractError(error))
@@ -70,11 +70,11 @@ export default function Component(){
         <div className="login-container">
             <h2>Login</h2>
             <div className="input-container">
-                <input type={"text"} required={"required"} onChange={(e) => setEmail(e.target.value)}/>
+                <input type="text" required="required" onChange={(e) => setEmail(e.target.value)}/>
                 <label>Email</label>
             </div>
             <div className="input-container">
-                <input type={"password"} required={"required"} onChange={(e) => setPassword(e.target.value)}/>
+                <input type="password" required="required" onChange={(e) => setPassword(e.target.value)}/>
                 <label>Password</label>
             </div>
             <button className="forget-password" onClick={forget}>Forget password?</button>
@@ -82,7 +82,7 @@ export default function Component(){
                 <button className="login-btn" onClick={login}>Login</button>
                 <h3 id="warning">{warning}</h3>
             </div>
-            <button className="create-account">CREATE ACCOUNT</button>
+            <button className="create-account" onClick={()=>{props.handlePage(1)}}>CREATE ACCOUNT</button>
 
         </div>
     )

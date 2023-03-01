@@ -3,7 +3,7 @@ import { auth } from "../../firebase"
 import React, {useState} from "react";
 import './Register.scss';
 
-export default function Component(){
+export default function Register(props){
     const back = "< Back";
 
     const [email, setEmail] = useState('');
@@ -56,7 +56,7 @@ export default function Component(){
 
     return(
         <div className="register-container">
-            <button className="back-button">{back}</button>
+            <button className="back-button" onClick={()=>{props.handlePage(0)}}>{back}</button>
             <h2>Create account</h2>
             <div className="input-container">
                 <input type={"text"} required={"required"} onChange={(e) => setName(e.target.value)}/>
