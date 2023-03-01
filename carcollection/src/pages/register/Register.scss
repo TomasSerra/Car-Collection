@@ -1,0 +1,111 @@
+$primary-color: #FFB703;
+$background-color: #111111; 
+$background-secondary-color: #282828;
+
+html{
+    height: 100%;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../../img/white-pattern.png);
+    background-repeat: repeat;
+    background-size: 45%;
+    background-color: $background-color;
+    animation: moving 600s linear infinite;
+
+
+    h2{
+        font-size: 11vw;
+    }
+
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 80%;
+        position: relative;
+
+        input{
+            color: white;
+            width: 100%;
+            outline: none;
+            height: 35px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid white;
+            font-size: 20px;
+            margin-top: 15%;
+        }
+
+        label{
+            font-size: 20px;
+            position: absolute;
+            bottom: 10px;
+            pointer-events: none;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+
+        input:focus + label, input:valid + label{
+            transform: translateY(-25px);
+        }
+    }
+
+    .register-btn{
+        background-color: $primary-color;
+        color: $background-color;
+        border: none;
+        border-radius: 100px;
+        margin-top: 15%;
+        font-size: 20px;
+        padding: 15px 35%;
+        font-weight: bold;
+    }
+
+    .register-btn:active{
+        background-color:#8d6500;
+    }
+
+    .back-button{
+        position: absolute;
+        color: $primary-color;
+        background-color: rgba(255, 0, 0, 0);
+        border: none;
+        font-size: 20px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .back-button:active{
+        color: #8d6500;
+    }
+
+    .button-container{
+        height: 45vw;
+        width: 100%;
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-direction: column;
+        justify-content: start;
+
+        #warning{
+            position: absolute;
+            bottom: 0;
+        }
+    }
+}
+
+@keyframes moving {
+    100%{
+        background-position-x: 15000px;
+        background-position-y: -10000px;
+    }
+    
+}
