@@ -6,18 +6,17 @@ html{
     height: 100%;
 }
 
-.login-container{
-    background-color: $primary-color;
+.register-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: $background-color;
+    color: white;
     justify-content: center;
     height: 100vh;
-    background-image: url(../../img/pattern.png);
+    background-image: url(../../img/white-pattern.png);
     background-repeat: repeat;
     background-size: 45%;
-    background-position-y: -25px;
+    background-color: $background-color;
     animation: moving 600s linear infinite;
 
 
@@ -33,12 +32,13 @@ html{
         position: relative;
 
         input{
+            color: white;
             width: 100%;
             outline: none;
             height: 35px;
             background-color: transparent;
             border: none;
-            border-bottom: 2px solid $background-color;
+            border-bottom: 2px solid white;
             font-size: 20px;
             margin-top: 15%;
         }
@@ -57,47 +57,33 @@ html{
         }
     }
 
-    .forget-password{
-        background-color: transparent;
-        border: none;
-        text-decoration: underline;
-        font-weight: bold;
-        margin-top: 10%;
-    }
-
-    .forget-password:active{
-        color: #282828;
-    }
-
-    .login-btn{
-        background-color: $background-color;
-        color: white;
+    .register-btn{
+        background-color: $primary-color;
+        color: $background-color;
         border: none;
         border-radius: 100px;
         margin-top: 15%;
         font-size: 20px;
         padding: 15px 35%;
         font-weight: bold;
-        position: relative;
     }
 
-    .login-btn:active{
-        background-color:rgba(34, 34, 34, 0.814);
+    .register-btn:active{
+        background-color:#8d6500;
     }
 
-    .create-account{
-        background-color: transparent;
-        border: 1px solid $background-color;
-        border-radius: 100px;
+    .back-button{
         position: absolute;
-        bottom: 30px;
-        font-weight: bold;
-        padding: 5px 9px;
+        color: $primary-color;
+        background-color: rgba(255, 0, 0, 0);
+        border: none;
+        font-size: 20px;
+        top: 10px;
+        left: 10px;
     }
 
-    .create-account:active{
-        color: rgba(34, 34, 34, 0.814);
-        border: 1px solid rgba(34, 34, 34, 0.814);
+    .back-button:active{
+        color: #8d6500;
     }
 
     .button-container{
@@ -114,7 +100,6 @@ html{
             bottom: 0;
         }
     }
-
 }
 
 @keyframes moving {
