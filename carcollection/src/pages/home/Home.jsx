@@ -3,6 +3,7 @@ import './Home.scss';
 import { GrFormAdd} from 'react-icons/gr';
 import { auth } from "../../firebase"
 import { signOut } from "firebase/auth";
+import Card from '../../components/Card';
 
 export default function Home(props){
     const [warningOpen, setWarningOpen] = useState(true)
@@ -47,101 +48,18 @@ export default function Home(props){
             </div>
             
             <header>
-                <button onClick={logoutWarning} className="logout-btn">LOGOUT</button>
+                <button onClick={logoutWarning} className="logout-btn">Logout</button>
                 <h2>Hot Collection</h2>
                 <button className="add-btn" onClick={addPage}>
                     <GrFormAdd size="3rem"/>
                 </button>
             </header>
             <section>
-                <h3 className="title">Nissan</h3>
+                <h3 className="title">Toyota</h3>
                 <hr/>
 
                 <div className="cards-container">
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
-                    <div className="card">
-                        <center>
-                            <div className="image"></div>
-                            <h2>'17 Nissan GT-R (R35)</h2>
-                            <p>HW J-Imports</p>
-                        </center>
-                    </div>
+                    <Card title={"Toyota Supra"} collection={"HW Speed Graphic"} color={"green"} image={"https://static.wikia.nocookie.net/hotwheels/images/4/43/GTB76.jpg"}/>
                 </div>
                 
             </section>

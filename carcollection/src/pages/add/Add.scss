@@ -140,6 +140,12 @@ html{
                 margin-top: 5px;
                 padding-left: 10px;
             }
+
+            input[type="date"]
+            {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
         }
 
         .input-container-row{

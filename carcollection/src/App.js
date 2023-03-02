@@ -32,7 +32,7 @@ function App() {
       {page===0 && <Login handlePage={handlePage}/>}
       {page===1 && <Register handlePage={handlePage}/>}
       {page===2 && <Home handlePage={handlePage}/>}
-      {page===3 && <Add handlePage={handlePage}/>}
+      {page===3 && <Add handlePage={handlePage} user={userObject}/>}
     </>
     
   );

@@ -129,43 +129,6 @@ html{
             display: flex;
             justify-content:start;
             flex-wrap: wrap;
-
-            .card{
-                padding: 1.5vw;
-                border-radius: $card-radius;
-                background-color: $background-secondary-color;
-                color: white;
-                width: min-content;
-                margin-top: 20px;
-                margin-right: 8px;
-                position: relative;
-    
-                h2{
-                    width: 95%;
-                    font-size: 13px;
-                    margin-bottom: 5vw;
-                }
-
-                p{
-                    font-size: 10px;
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    margin: auto;
-                    background-color: #2e950e;
-                    padding: 3px 0;
-                }
-    
-                .image{
-                    height: 40vw;
-                    width: 26vw;
-                    background-image: url(../../img/nissan1.jpeg);
-                    background-size:cover;
-                    background-repeat: no-repeat;
-                    border-radius: $card-radius;
-                }
-            }
         }
 
 
