@@ -29,7 +29,6 @@ html{
         left: 10px;
     }
 
-c
 
     input{
         text-align: center;
@@ -140,6 +139,12 @@ c
                 padding: 0;
                 margin-top: 5px;
                 padding-left: 10px;
+            }
+
+            input[type="date"]
+            {
+                -webkit-appearance: none;
+                -moz-appearance: none;
             }
         }
 
