@@ -7,6 +7,8 @@ import Home from './pages/home/Home';
 import Add from './pages/add/Add';
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
+import SplashScreen from './pages/splashscreen/SplashScreen'
+import Info from './pages/info/Info'
 
 function App() {
   const [userObject, setUser] = useState();
@@ -17,7 +19,10 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if(user && page===0){
         setUser(user)
-        handlePage(2)
+        handlePage(3)
+      }
+      else{
+        handlePage(1)
       }
     })
   },[])
@@ -29,10 +34,12 @@ function App() {
 
   return (
     <>
-      {page===0 && <Login handlePage={handlePage}/>}
-      {page===1 && <Register handlePage={handlePage}/>}
-      {page===2 && <Home handlePage={handlePage}/>}
-      {page===3 && <Add handlePage={handlePage} user={userObject}/>}
+      {page===0 && <SplashScreen/>}
+      {page===1 && <Login handlePage={handlePage}/>}
+      {page===2 && <Register handlePage={handlePage}/>}
+      {page===3 && <Home handlePage={handlePage} user={userObject}/>}
+      {page===4 && <Add handlePage={handlePage} user={userObject}/>}
+      {page===5 && <Info handlePage={handlePage} user={userObject}/>}
     </>
     
   );

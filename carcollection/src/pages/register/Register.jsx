@@ -56,7 +56,7 @@ export default function Register(props){
 
     return(
         <div className="register-container">
-            <button className="back-button" onClick={()=>{props.handlePage(0)}}>{back}</button>
+            <button className="back-button" onClick={()=>{props.handlePage(1)}}>{back}</button>
             <h2>Create account</h2>
             <div className="input-container">
                 <input type={"text"} required={"required"} onChange={(e) => setName(e.target.value)}/>

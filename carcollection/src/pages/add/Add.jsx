@@ -1,26 +1,51 @@
 import React, {useState} from "react";
-import {ref, set } from "firebase/database";
-import { db } from "../../firebase"
+import {set, ref as refDB } from "firebase/database";
+import {ref, uploadBytes } from "firebase/storage";
+import { db, storage} from "../../firebase"
 import './Add.scss';
 
 export default function Add(props){
 
     const [uploadImage, setUploadImage] = useState();
+    const [brandInput, setBrand] = useState("");
+    const [titleInput, setTitle] = useState("");
+    const [collectionInput, setCollection] = useState("")
+    const [collectionNumberInput, setCollectionNumber] = useState("")
+    const [collectionColorInput, setCollectionColor] = useState("#000000")
+    const [seriesNumberInput, setSeriesNumber] = useState("")
+    const [yearInput, setYear] = useState("")
+    const [dateInput, setDate] = useState("")
+    const [ownerInput, setOwner] = useState("")
+    const [viewImage, setViewImage] = useState("")
 
     function back(){
-        props.handlePage(2)
+        setViewImage("")
+        setUploadImage("")
+        setBrand("")
+        setTitle("")
+        setCollection("")
+        setCollectionColor("#000000")
+        setCollectionNumber("")
+        setDate("")
+        setOwner("")
+        setYear("")
+        props.back()
     }
 
-    function readImage(){
+    async function readImage(){
         const imageInput = document.getElementById("imageInput")
-        const image = document.getElementById("image")
         const uploadBtn = document.getElementById("uploadBtn")
 
         if(imageInput.files && imageInput.files[0]){
-            var reader = new FileReader();
+            const archivo = imageInput.files[0];
+
+            const blob = await comprimirImagen(archivo, parseInt(20));
+
+            let reader = new FileReader();
             reader.onload = function (e){
-                setUploadImage(e.target.result)
-                image.style = "background-image: url("+ e.target.result + "); background-size: auto 100%; background-position-y: 0;"
+                setUploadImage(blob)
+                setViewImage(URL.createObjectURL(blob))
+
                 uploadBtn.style = "opacity: 50%;"
             };
             reader.readAsDataURL(imageInput.files[0]);
@@ -29,33 +54,27 @@ export default function Add(props){
 
     function uploadData()
     {
-        const titleInput = document.getElementById("title").value
-        const brandInput = document.getElementById("brand").value
-        const collectionInput = document.getElementById("collection").value
 
-        if(navigator.onLine && titleInput.trim() != "" && brandInput.trim() != "" && collectionInput.trim() != ""){
-            const collectionColorInput = document.getElementById("collectionColor").value
-            const collectionNumberInput = document.getElementById("collectionNumber").value
-            const yearInput = document.getElementById("year").value
-            const seriesInput = document.getElementById("series").value
-            const dateInput = document.getElementById("date").value
-            const ownerInput = document.getElementById("owner").value
+        if(navigator.onLine && titleInput.trim() != "" && brandInput.trim() != "" && collectionInput.trim() != "" && uploadImage != null){
 
-            const userId = props.user.uid
-            console.log(userId)
+            const storageRef = ref(storage, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput);
 
-            set(ref(db, 'users/' + userId + '/' + brandInput + "/" + titleInput), {
+            uploadBytes(storageRef, uploadImage)
+
+            set(refDB(db, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput), {
                 title: titleInput,
+                brand: brandInput,
                 collection: collectionInput,
-                collectionColor: collectionNumberInput,
-                collectionNumber: collectionColorInput,
+                collectionColor: collectionColorInput ,
+                collectionNumber: collectionNumberInput,
                 year: yearInput,
-                seriesNumber: seriesInput,
+                seriesNumber: seriesNumberInput,
                 date: dateInput,
-                owner: ownerInput
+                owner: ownerInput,
+                image: titleInput
             })
             .then(()=>{
-                props.handlePage(2)
+                props.back()
             })
             .catch((error)=>{
                 console.log(error)
@@ -63,50 +82,74 @@ export default function Add(props){
         }
     }
 
+    function comprimirImagen(imagenComoArchivo, porcentajeCalidad){
+		return new Promise((resolve, reject) => {
+			const $canvas = document.createElement("canvas");
+			const imagen = new Image();
+			imagen.onload = () => {
+				$canvas.width = imagen.width;
+				$canvas.height = imagen.height;
+				$canvas.getContext("2d").drawImage(imagen, 0, 0);
+				$canvas.toBlob(
+					(blob) => {
+						if (blob === null) {
+							return reject(blob);
+						} else {
+							resolve(blob);
+						}
+					},
+					"image/jpeg",
+					porcentajeCalidad / 100
+				);
+			};
+			imagen.src = URL.createObjectURL(imagenComoArchivo);
+		});
+	};
+
     return(
-        <div className="add-container">
+        <div className="add-container" style={{display: props.display ? "flex" : "none"}}>
             <button className="back-button" onClick={back}>{"< Back"}</button>
-            <input id={"title"} placeholder={"Title"}/>
+            <input id={"title"} placeholder={"Title"} onChange={(e)=>{setTitle(e.target.value)}} value={titleInput}/>
             <div className="image-container">
-                <div className="image" id="image">
+                <div className="image" id="image" style={{backgroundImage: "url("+viewImage+")"}}>
                     <div className="upload-btn" id="uploadBtn">Upload image<input type={"file"} accept={"image/png, image/jpeg"} multiple={false} onChange={readImage} id="imageInput"/></div>
                 </div>
             </div>
             <div className="inputs-container">
                 <div className="input-container">
                     <label>Brand</label>
-                    <input id="brand" placeholder={""}/>
+                    <input id="brand" placeholder="" onChange={(e)=>{setBrand(e.target.value)}} value={brandInput}/>
                 </div>
                 <div className="input-container-row">
                     <div className="column1">
                         <label>Collection</label>
-                        <input id="collection" placeholder={""}/>
+                        <input id="collection" placeholder={""} onChange={(e)=>{setCollection(e.target.value)}} value={collectionInput}/>
                     </div>
                     <div className="column2">
-                        <input id="collectionColor" placeholder={""} type={"color"}/>
+                        <input id="collectionColor" placeholder={""} type={"color"} onChange={(e)=>{setCollectionColor(e.target.value)}} value={collectionColorInput}/>
                     </div>
                 </div>
                 <div className="input-container-row">
                     <div className="column3">
                         <label>Collection number</label>
-                        <input id="collectionNumber" placeholder={""}/>
+                        <input id="collectionNumber" placeholder={""} onChange={(e)=>{setCollectionNumber(e.target.value)}} value={collectionNumberInput}/>
                     </div>
                     <div className="column4">
                         <label>Year</label>
-                        <input id="year" placeholder={""} type={"number"}/>
+                        <input id="year" placeholder={""} type={"number"} onChange={(e)=>{setYear(e.target.value)}} value={yearInput}/>
                     </div>
                 </div>
                 <div className="input-container">
                     <label>Series number</label>
-                    <input id="series" placeholder={""}/>
+                    <input id="series" placeholder={""} onChange={(e)=>{setSeriesNumber(e.target.value)}} value={seriesNumberInput}/>
                 </div>
                 <div className="input-container">
                     <label>Purchase date</label>
-                    <input id="date" type={"date"}/>
+                    <input id="date" type={"date"} onChange={(e)=>{setDate(e.target.value)}} value={dateInput}/>
                 </div>
                 <div className="input-container">
                     <label>Owner</label>
-                    <input id="owner"/>
+                    <input id="owner" onChange={(e)=>{setOwner(e.target.value)}} value={ownerInput}/>
                 </div>
                 <button className="add-btn" onClick={uploadData}>ADD CAR</button>
             </div>

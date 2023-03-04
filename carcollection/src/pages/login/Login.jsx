@@ -18,7 +18,7 @@ export default function Login(props){
         if( email != "" && password != ""){
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                props.handlePage(2)
+                props.handlePage(3)
             })
             .catch((error) =>{
                 setWarning(extractError(error))
@@ -28,7 +28,7 @@ export default function Login(props){
             setTimeoutKey(setTimeout(clearWarning, 4000))
         }
         else{
-            setWarning("Please complete all required fields")
+            setWarning("Please complete all fields")
             warningText.style = "color: #4d0101"
             setTimeoutKey(setTimeout(clearWarning, 4000))
         }
@@ -68,7 +68,7 @@ export default function Login(props){
 
     return(
         <div className="login-container">
-            <h2>Login</h2>
+            <h2>Hot Collection</h2>
             <div className="input-container">
                 <input type="text" required="required" onChange={(e) => setEmail(e.target.value)}/>
                 <label>Email</label>
@@ -82,7 +82,7 @@ export default function Login(props){
                 <button className="login-btn" onClick={login}>Login</button>
                 <h3 id="warning">{warning}</h3>
             </div>
-            <button className="create-account" onClick={()=>{props.handlePage(1)}}>CREATE ACCOUNT</button>
+            <button className="create-account" onClick={()=>{props.handlePage(2)}}>CREATE ACCOUNT</button>
 
         </div>
     )
