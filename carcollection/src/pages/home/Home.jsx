@@ -110,7 +110,7 @@ export default function Home(props){
                                         Object.values(data[brand] ? data[brand] : []).map((car)=>{
                                             
                                             return(
-                                                <Card key={props.user.uid+car.title} infoOpen={infoOpenButton} userId={props.user.uid} title={car.title} collection={car.collection} collectionColor={car.collectionColor} collectionNumber={car.collectionNumber} seriesNumber={car.seriesNumber} owner={car.owner} year={car.year} date={car.date}  color={car.collectionColor} image={car.title} brand={car.brand}/>
+                                                < Card key={props.user.uid+car.title} infoOpen={infoOpenButton} userId={props.user.uid} title={car.title} collection={car.collection} collectionColor={car.collectionColor} collectionNumber={car.collectionNumber} seriesNumber={car.seriesNumber} owner={car.owner} year={car.year} date={car.date}  color={car.collectionColor} image={car.title} brand={car.brand}/>
                                             )
                                         })
                                     }

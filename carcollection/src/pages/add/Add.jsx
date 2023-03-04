@@ -26,6 +26,7 @@ export default function Add(props){
         setCollection("")
         setCollectionColor("#000000")
         setCollectionNumber("")
+        setSeriesNumber("")
         setDate("")
         setOwner("")
         setYear("")
@@ -58,27 +59,26 @@ export default function Add(props){
         if(navigator.onLine && titleInput.trim() != "" && brandInput.trim() != "" && collectionInput.trim() != "" && uploadImage != null){
 
             const storageRef = ref(storage, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput);
-
-            uploadBytes(storageRef, uploadImage)
-
-            set(refDB(db, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput), {
-                title: titleInput,
-                brand: brandInput,
-                collection: collectionInput,
-                collectionColor: collectionColorInput ,
-                collectionNumber: collectionNumberInput,
-                year: yearInput,
-                seriesNumber: seriesNumberInput,
-                date: dateInput,
-                owner: ownerInput,
-                image: titleInput
-            })
-            .then(()=>{
-                props.back()
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
+            uploadBytes(storageRef, uploadImage).then(()=>{
+                set(refDB(db, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput), {
+                    title: titleInput,
+                    brand: brandInput,
+                    collection: collectionInput,
+                    collectionColor: collectionColorInput ,
+                    collectionNumber: collectionNumberInput,
+                    year: yearInput,
+                    seriesNumber: seriesNumberInput,
+                    date: dateInput,
+                    owner: ownerInput,
+                    image: titleInput
+                })
+                .then(()=>{
+                    back()
+                })
+                .catch((error)=>{
+                    console.log(error)
+                })
+            }).catch()            
         }
     }
 
