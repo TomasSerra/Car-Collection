@@ -118,6 +118,8 @@ export default function Home(props){
                             </div>
                         )
                     })
+                },{
+                    <h2 style={{display: data ? "none" : "block", color: "grey", textAlign: "center", fontSize: "28px", paddingRight: "20px"}}>To add your first car, tap the "+" button</h2>
                 }
             </section>
         </div>
