@@ -99,7 +99,7 @@ export default function Home(props){
             </header>
             <section className="container">
                 {
-                    Object.keys(data).map((brand)=>{
+                    Object.keys(data ? data : []).map((brand)=>{
                         return(
                             <div key={brand}>
                                 <h3 className="title">{brand}</h3>
@@ -107,7 +107,7 @@ export default function Home(props){
 
                                 <div className="cards-container">
                                     {
-                                        Object.values(data[brand]).map((car)=>{
+                                        Object.values(data[brand] ? data[brand] : []).map((car)=>{
                                             
                                             return(
                                                 <Card key={props.user.uid+car.title} infoOpen={infoOpenButton} userId={props.user.uid} title={car.title} collection={car.collection} collectionColor={car.collectionColor} collectionNumber={car.collectionNumber} seriesNumber={car.seriesNumber} owner={car.owner} year={car.year} date={car.date}  color={car.collectionColor} image={car.title} brand={car.brand}/>
