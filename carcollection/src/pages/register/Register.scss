@@ -100,3 +100,46 @@ html{
         }
     }
 }
+
+@media(min-width: 1000px){
+    .register-container{
+        justify-content: space-between;
+    
+    
+        h2{
+            font-size: 40px;
+            margin-top: 80px;
+        }
+    
+        .input-container{
+            width: 40%;
+    
+            input{
+                margin-top: 60px;
+            }
+
+            input:focus + label, input:valid + label{
+                transform: translateY(-25px);
+            }
+        }
+    
+        .register-btn{
+            margin-top: 80px;
+            cursor: pointer;
+        }
+    
+        .back-button{
+            font-size: 25px;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    
+        .button-container{
+            width: 70%;
+        }
+    }
+
+
+
+}

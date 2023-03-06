@@ -77,7 +77,7 @@ export default function Login(props){
                 <input type="password" required="required" onChange={(e) => setPassword(e.target.value)}/>
                 <label>Password</label>
             </div>
-            <button className="forget-password" onClick={forget}>Forget password?</button>
+            <button className="forget-password" onClick={forget}>Forgot password?</button>
             <div className="button-container">
                 <button className="login-btn" onClick={login}>Login</button>
                 <h3 id="warning">{warning}</h3>

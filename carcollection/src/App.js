@@ -8,7 +8,6 @@ import Add from './pages/add/Add';
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import SplashScreen from './pages/splashscreen/SplashScreen'
-import Info from './pages/info/Info'
 
 function App() {
   const [userObject, setUser] = useState();
@@ -48,7 +47,6 @@ function App() {
       {page===2 && <Register handlePage={handlePage}/>}
       {page===3 && <Home handlePage={handlePage} user={userObject}/>}
       {page===4 && <Add handlePage={handlePage} user={userObject}/>}
-      {page===5 && <Info handlePage={handlePage} user={userObject}/>}
     </>
     
   );

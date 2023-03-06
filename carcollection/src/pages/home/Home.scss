@@ -263,3 +263,515 @@ $card-radius: 10px;
         padding-top: 10px;
     }
 }
+
+@media (min-width: 700px) and (max-width: 799px){
+    .home-container{
+        section{
+            padding-left: 15px;
+            margin-top: 15%;
+    
+            .title{
+                font-size: 35px;
+                margin-top: 0%;
+                color: white;
+                margin-bottom: 0;
+            }
+    
+            hr{
+                size: 5px;
+            }
+    
+            .cards-container{
+                display: flex;
+                justify-content:start;
+                flex-wrap: wrap;
+                margin-bottom: 45px;
+            }
+    
+    
+        }
+    }
+    .info-container{
+        overflow: hidden;
+
+        
+
+        center{
+            display: block;
+        }
+        color: white;
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        background-color: $background-color;
+    
+        .back-button{
+            position: absolute;
+            color: $primary-color;
+            background-color: rgba(255, 0, 0, 0);
+            border: none;
+            font-size: 20px;
+            top: 10px;
+            left: 10px;
+        }
+    
+        .image-title-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+            margin-top: 50px;
+            position: relative;
+    
+            .image-container{
+                background-color: $background-secondary-color;
+                width: fit-content;
+                height: fit-content;
+                border-radius: 20px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+    
+                .image{
+                    width: 200px;
+                    height: 300px;
+                    margin: 10px 10px;
+                    margin-bottom: 30px;
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 20px;
+                    
+                }
+            }
+    
+            .titleInfo{
+                position: relative;
+                background-color: $primary-color;
+                border-radius: 100px;
+                color: $background-color;
+                padding: 10px 15px;
+                font-size: 25px;
+                max-width: 75%;
+                min-width: 70%;
+                margin: 0;
+                z-index: 2;
+                top: 0;
+                left: 0;
+            }
+    
+            .collectionInfo{
+                position: relative;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 100px;
+                color: $background-color;
+                padding: 5px 30px;
+                font-size: 15px;
+                max-width: 80%;
+                margin: 0;
+                z-index: 1;
+                max-width: 35%;
+                min-width: 35%;
+                color: white;
+                font-weight: 400;
+                top: 0;
+                left: 0;
+            }
+            
+    
+    
+        }
+    
+        .details-container{
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            margin-bottom: 40px;
+            position: relative;
+    
+            .input-container{
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 5px;
+    
+                label{
+                    position: absolute;
+                    left: 70px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+    
+                input{
+                    background-color: $background-secondary-color;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    height: 30px;
+                    text-align: right;
+                    padding: 5px 20px;
+                    color: white;
+                    width: 80%;
+                }
+            }
+        }
+    
+        .delete-btn{
+            position: absolute;
+            margin: 0;
+            background-color: #500606;
+            border: none;
+            width: 100%;
+            height: 50px;
+            color: white;
+            font-size: 18px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-radius: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto 0;
+        }
+    }
+}
+
+
+
+@media (min-width: 800px) and (max-width: 999px){
+
+.info-container{
+        center{
+            display: flex;
+        }
+
+        .back-button{
+            position: absolute;
+            color: $primary-color;
+            background-color: rgba(255, 0, 0, 0);
+            border: none;
+            font-size: 20px;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    
+        .image-title-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+            margin-top: 80px;
+            width: 700px;
+            margin-left: 50px;
+    
+            .image-container{
+                background-color: $background-secondary-color;
+                width: fit-content;
+                height: fit-content;
+                border-radius: 20px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+    
+                .image{
+                    width: 340px;
+                    height: 520px;
+                    margin: 10px 10px;
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 20px;
+                }
+            }
+    
+            .titleInfo{
+                position: absolute;
+                background-color: $primary-color;
+                border-radius: 100px;
+                color: $background-color;
+                padding: 10px 15px;
+                font-size: 25px;
+                max-width: 500px;
+                min-width: 500px;
+                width: 500px;
+                margin: 0;
+                z-index: 2;
+                right: -53.5vw;
+                top: -15px;
+            }
+    
+            .collectionInfo{
+                position: absolute;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 100px;
+                color: $background-color;
+                padding: 10px 30px;
+                font-size: 15px;
+                margin: 0;
+                z-index: 1;
+                width: 300px;
+                min-width: 300px;
+                max-width: 300px;
+                color: white;
+                font-weight: 400;
+                right: -46vw;
+                top: 30px;
+            }
+        }
+    
+        .details-container{
+            margin-top: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 0;
+            position: relative;
+    
+            .input-container{
+                position: relative;
+                width: 600px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 5px;
+    
+                label{
+                    position: absolute;
+                    left: 50px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+    
+                input{
+                    background-color: $background-secondary-color;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    height: 30px;
+                    text-align: right;
+                    padding: 5px 20px;
+                    color: white;
+                    width: 80%;
+                }
+            }
+        }
+    
+        .delete-btn{
+            position: absolute;
+            background-color: #500606;
+            border: none;
+            width: 500px;
+            height: 50px;
+            color: white;
+            font-size: 18px;
+            padding: 10px 10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: 40px;
+            cursor: pointer;
+            border-radius: 100px;
+            margin-left: 48vw;
+        }
+    }
+}
+
+@media (min-width: 1000px){
+    .home-container{
+    
+        .logout-background{
+    
+            .logout-warning{
+                width: 50%;
+            }
+    
+            .buttons-container{
+    
+                button{
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        header{
+            justify-content: space-between;
+    
+            .logout-btn{
+                font-size: 20px;
+                padding: 10px 15px;
+                margin-left: 40px;
+                cursor: pointer;
+            }
+    
+            .logout-btn:active{
+                background-color: rgb(63, 0, 0);
+            }
+    
+            .add-btn{
+                margin-right: 40px;
+                cursor: pointer;
+            }
+    
+            h2{
+                font-size: 25px;
+            }
+    
+        }
+    
+        section{
+            padding-left: 30px;
+            margin-top: 10%;
+    
+            .title{
+                font-size: 35px;
+            }
+    
+            .cards-container{
+                display: flex;
+                justify-content:start;
+                flex-wrap: wrap;
+                margin-bottom: 60px;
+                width: 100%;
+            }
+        }
+    }
+    
+    .info-container{
+        center{
+            display: flex;
+        }
+
+        .back-button{
+            position: absolute;
+            color: $primary-color;
+            background-color: rgba(255, 0, 0, 0);
+            border: none;
+            font-size: 20px;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    
+        .image-title-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+            margin-top: 80px;
+            width: 700px;
+            margin-left: 130px;
+    
+            .image-container{
+                background-color: $background-secondary-color;
+                width: fit-content;
+                height: fit-content;
+                border-radius: 20px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+    
+                .image{
+                    width: 340px;
+                    height: 520px;
+                    margin: 10px 10px;
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
+                    border-radius: 20px;
+                }
+            }
+    
+            .titleInfo{
+                position: absolute;
+                background-color: $primary-color;
+                border-radius: 100px;
+                color: $background-color;
+                padding: 10px 15px;
+                font-size: 25px;
+                max-width: 550px;
+                min-width: 550px;
+                width: 550px;
+                margin: 0;
+                z-index: 2;
+                right: -51vw;
+                top: -15px;
+            }
+    
+            .collectionInfo{
+                position: absolute;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 100px;
+                color: $background-color;
+                padding: 10px 30px;
+                font-size: 15px;
+                margin: 0;
+                z-index: 1;
+                width: 300px;
+                min-width: 300px;
+                max-width: 300px;
+                color: white;
+                font-weight: 400;
+                right: -43vw;
+                top: 30px;
+            }
+        }
+    
+        .details-container{
+            margin-top: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 0;
+            position: relative;
+    
+            .input-container{
+                position: relative;
+                width: 700px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 5px;
+    
+                label{
+                    position: absolute;
+                    left: 70px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+    
+                input{
+                    background-color: $background-secondary-color;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    height: 30px;
+                    text-align: right;
+                    padding: 5px 20px;
+                    color: white;
+                    width: 80%;
+                }
+            }
+        }
+    
+        .delete-btn{
+            position: absolute;
+            background-color: #500606;
+            border: none;
+            width: 550px;
+            height: 50px;
+            color: white;
+            font-size: 18px;
+            padding: 10px 10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: 40px;
+            cursor: pointer;
+            border-radius: 100px;
+            margin-left: 50vw;
+        }
+    }
+}

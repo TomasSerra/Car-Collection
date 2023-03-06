@@ -42,3 +42,51 @@ $card-radius: 10px;
         border-radius: $card-radius;
     }
 }
+
+@media (min-width: 1000px){
+    .card{
+        cursor: pointer;
+        padding: 10px;
+    
+        h2{
+            width: 95%;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+    
+        p{
+            font-size: 12px;
+            border-bottom-left-radius: $card-radius;
+            border-bottom-right-radius: $card-radius;
+        }
+    
+        .image{
+            height: 200px;
+            width: 120px;
+        }
+    }
+}
+
+@media (min-width: 700px){
+    .card{
+        cursor: pointer;
+        padding: 10px;
+    
+        h2{
+            width: 95%;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+    
+        p{
+            font-size: 12px;
+            border-bottom-left-radius: $card-radius;
+            border-bottom-right-radius: $card-radius;
+        }
+    
+        .image{
+            height: 200px;
+            width: 120px;
+        }
+    }
+}

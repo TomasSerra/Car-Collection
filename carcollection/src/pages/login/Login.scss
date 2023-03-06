@@ -115,3 +115,45 @@ html{
     }
 
 }
+
+@media(min-width: 1000px){
+    .login-container{
+    
+        h2{
+            font-size: 40px;
+            margin-top: 60px;
+        }
+    
+        .input-container{
+            width: 40%;
+    
+            input{
+                margin-top: 60px;
+            }
+        }
+    
+        .forget-password{
+            margin-top: 40px;
+            cursor: pointer;
+        }
+    
+        .forget-password:active{
+            color: #282828;
+        }
+    
+        .login-btn{
+            margin-top: 50px;
+            cursor: pointer;
+        }
+
+    
+        .create-account{
+            cursor: pointer;
+        }
+    
+        .button-container{
+            width: 50%;
+        }
+    
+    }
+}
