@@ -62,7 +62,7 @@ html{
         border-radius: 100px;
         margin-top: 15%;
         font-size: 20px;
-        padding: 15px 35%;
+        padding: 15px 22%;
         font-weight: bold;
     }
 
@@ -92,10 +92,11 @@ html{
         align-items: center;
         flex-direction: column;
         justify-content: start;
+        text-align: center;
 
         #warning{
-            position: absolute;
-            bottom: 0;
+            font-size: 18px;
+            margin-top: 20px;
         }
     }
 }

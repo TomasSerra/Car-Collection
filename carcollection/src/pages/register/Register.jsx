@@ -50,7 +50,7 @@ export default function Register(props){
         const errorArr = error.code.slice(5).split("-")
         var err = ""
         errorArr.forEach(word => err += word + " ")
-        err = err.toUpperCase()
+        err = err.charAt(0).toUpperCase() + err.slice(1);
         return err
     }
 
@@ -71,7 +71,7 @@ export default function Register(props){
                 <label>Password</label>
             </div>
             <div className="button-container">
-                <button className="register-btn" onClick={create}>Create</button>
+                <button className="register-btn" onClick={create}>Create & Login</button>
                 <h3 id="warning">{warning}</h3>
             </div>
         </div>

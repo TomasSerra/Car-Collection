@@ -3,8 +3,14 @@ import {set, ref as refDB } from "firebase/database";
 import {ref, uploadBytes } from "firebase/storage";
 import { db, storage} from "../../firebase"
 import './Add.scss';
+import loadingSpin from "../../img/loading-spin.svg"
 
 export default function Add(props){
+
+    const [loading, setLoading] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [warningText, setWarningText] = useState("");
+    
 
     const [uploadImage, setUploadImage] = useState();
     const [brandInput, setBrand] = useState("");
@@ -30,6 +36,7 @@ export default function Add(props){
         setDate("")
         setOwner("")
         setYear("")
+        setWarningText("")
         props.back()
     }
 
@@ -55,30 +62,48 @@ export default function Add(props){
 
     function uploadData()
     {
-
-        if(navigator.onLine && titleInput.trim() != "" && brandInput.trim() != "" && collectionInput.trim() != "" && uploadImage != null){
-
-            const storageRef = ref(storage, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput);
-            uploadBytes(storageRef, uploadImage).then(()=>{
-                set(refDB(db, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput), {
-                    title: titleInput,
-                    brand: brandInput,
-                    collection: collectionInput,
-                    collectionColor: collectionColorInput ,
-                    collectionNumber: collectionNumberInput,
-                    year: yearInput,
-                    seriesNumber: seriesNumberInput,
-                    date: dateInput,
-                    owner: ownerInput,
-                    image: titleInput
-                })
-                .then(()=>{
-                    back()
-                })
-                .catch((error)=>{
-                    console.log(error)
-                })
-            }).catch()            
+        setButtonDisabled(true)
+        if(navigator.onLine){
+            if(titleInput.trim() != "" && brandInput.trim() != "" && collectionInput.trim() != "" && uploadImage != null){
+                setLoading(true)
+                const storageRef = ref(storage, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput);
+                uploadBytes(storageRef, uploadImage).then(()=>{
+                    set(refDB(db, 'users/' + props.userId + '/cars/' + brandInput + '/' + titleInput), {
+                        title: titleInput,
+                        brand: brandInput,
+                        collection: collectionInput,
+                        collectionColor: collectionColorInput ,
+                        collectionNumber: collectionNumberInput,
+                        year: yearInput,
+                        seriesNumber: seriesNumberInput,
+                        date: dateInput,
+                        owner: ownerInput,
+                        image: titleInput
+                    })
+                    .then(()=>{
+                        setLoading(false)
+                        setButtonDisabled(false)
+                        back()
+                    })
+                    .catch((error)=>{
+                        setLoading(false)
+                        setButtonDisabled(false)
+                        setWarningText(error)
+                    })
+                }).catch((error)=>{
+                    setButtonDisabled(false)
+                    setLoading(false)
+                    setWarningText(error)
+                })            
+            }
+            else{
+                setWarningText("Please complete all required fields")
+                setButtonDisabled(false)
+            }
+        }
+        else{
+            setWarningText("No internet connection")
+            setButtonDisabled(false)
         }
     }
 
@@ -107,22 +132,29 @@ export default function Add(props){
 	};
 
     return(
+        <>
+        <div className="loading-container" style={{display: loading ? "flex" : "none"}}>
+            <div className="loading-box">
+                <h2>Adding car...</h2>
+                <img src={loadingSpin}></img>
+            </div>
+        </div>
         <div className="add-container" style={{display: props.display ? "flex" : "none"}}>
-            <button className="back-button" onClick={back}>{"< Back"}</button>
-            <input id={"title"} placeholder={"Title"} onChange={(e)=>{setTitle(e.target.value)}} value={titleInput}/>
+            <button className="back-button" onClick={back} disabled={buttonDisabled}>{"< Back"}</button>
+            <input id={"title"} placeholder={"Title *"} onChange={(e)=>{setTitle(e.target.value)}} value={titleInput}/>
             <div className="image-container">
                 <div className="image" id="image" style={{backgroundImage: "url("+viewImage+")"}}>
-                    <div className="upload-btn" id="uploadBtn">Upload image<input type={"file"} accept={"image/png, image/jpeg"} multiple={false} onChange={readImage} id="imageInput"/></div>
+                    <div className="upload-btn" id="uploadBtn">Upload image *<input type={"file"} accept={"image/png, image/jpeg"} multiple={false} onChange={readImage} id="imageInput"/></div>
                 </div>
             </div>
             <div className="inputs-container">
                 <div className="input-container">
-                    <label>Brand</label>
+                    <label>Brand *</label>
                     <input id="brand" placeholder="" onChange={(e)=>{setBrand(e.target.value)}} value={brandInput}/>
                 </div>
                 <div className="input-container-row">
                     <div className="column1">
-                        <label>Collection</label>
+                        <label>Collection *</label>
                         <input id="collection" placeholder={""} onChange={(e)=>{setCollection(e.target.value)}} value={collectionInput}/>
                     </div>
                     <div className="column2">
@@ -151,9 +183,11 @@ export default function Add(props){
                     <label>Owner</label>
                     <input id="owner" onChange={(e)=>{setOwner(e.target.value)}} value={ownerInput}/>
                 </div>
-                <button className="add-btn" onClick={uploadData}>ADD CAR</button>
+                <h2 className="warning-text">{warningText}</h2>
+                <button className="add-btn" onClick={uploadData} disabled={buttonDisabled}>ADD CAR</button>
+                
             </div>
-            
         </div>
+        </>
     )
 }

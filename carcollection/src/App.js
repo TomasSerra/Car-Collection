@@ -30,6 +30,15 @@ function App() {
   function handlePage(num)
   {
     setPage(num)
+
+    if(num===1 || num===2){
+      document.documentElement.style.overflow = "hidden"
+    }
+    else if(num===3){
+      document.documentElement.style.overflowX = "hidden"
+      document.documentElement.style.overflowY = "scroll"
+    }
+
   }
 
   return (

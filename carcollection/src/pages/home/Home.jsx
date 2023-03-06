@@ -14,6 +14,7 @@ export default function Home(props){
     const [data, setData] = useState({});
     const [infoOpen, setInfoOpen] = useState(false)
     const [addOpen, setAddOpen] = useState(false)
+    const [username, setUsername] = useState(props.user.displayName)
 
     const [titleInfo, setTitle] = useState("")
     const [brandInfo, setBrand] = useState("")
@@ -29,6 +30,7 @@ export default function Home(props){
     useEffect(() => {
         const db = getDatabase();
         const starCountRef = ref(db, 'users/'+props.user.uid+'/cars');
+        setUsername(props.user.displayName)
 
         onValue(starCountRef, (snapshot) => {
             setData(snapshot.val())
@@ -92,7 +94,7 @@ export default function Home(props){
             
             <header>
                 <button onClick={logoutWarning} className="logout-btn">Logout</button>
-                <h2>Hot Collection</h2>
+                <h2>{username}</h2>
                 <button className="add-btn" onClick={addPage}>
                     <GrFormAdd size="3rem"/>
                 </button>

@@ -13,6 +13,7 @@ $card-radius: 10px;
     margin-right: 8px;
     position: relative;
     border: none;
+    display: flex;
 
     h2{
         width: 95%;
@@ -29,6 +30,8 @@ $card-radius: 10px;
         margin: auto;
         background-color: $primary-color;
         padding: 3px 0;
+        border-bottom-left-radius: $card-radius;
+        border-bottom-right-radius: $card-radius;
     }
 
     .image{

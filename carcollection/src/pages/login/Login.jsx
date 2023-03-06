@@ -62,7 +62,7 @@ export default function Login(props){
         const errorArr = error.code.slice(5).split("-")
         var err = ""
         errorArr.forEach(word => err += word + " ")
-        err = err.toUpperCase()
+        err = err.charAt(0).toUpperCase() + err.slice(1);
         return err
     }
 

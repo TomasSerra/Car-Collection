@@ -2,14 +2,43 @@ $primary-color: #FFB703;
 $background-color: #111111; 
 $background-secondary-color: #282828;
 
-*{
-    overflow-x: hidden;
+html{
+    height: 100%;
+    background-color: $background-color;
 }
 
-html{
-    background-color: $background-color;
+.loading-container{
+    background-color: rgba(0, 0, 0, 0.782);
+    position: fixed;
     height: 100%;
-    overflow-y: scroll;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading-box{
+        text-align: center;
+        background-color: $primary-color;
+        width: 80%;
+        height: fit-content;
+        border-radius: 20px;
+        padding-bottom: 20px;
+
+        h2{
+            color: $background-color;
+        }
+
+        img{
+            width: 15%;
+            -webkit-animation: loading 1.5s linear infinite;
+            -moz-animation: loading 1.5s linear infinite;
+            -ms-animation: loading 1.5s linear infinite;
+            -o-animation: loading 1.5s linear infinite;
+            animation: loading 1.5s infinite linear;
+        }
+
+    }
 }
 
 .add-container{
@@ -19,6 +48,7 @@ html{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $background-color;
     
 
     .back-button{
@@ -216,7 +246,6 @@ html{
         font-size: 20px;
         font-weight: bold;
         padding: 15px 30%;
-        margin-top: 40px;
         margin-bottom: 40px;
         color: $background-color;
     }
@@ -225,4 +254,42 @@ html{
         background-color: #c89002;
     }
 
+    .warning-text{
+        text-align: center;
+        color: rgb(192, 67, 67);
+        font-size: 20px;
+        width: 80%;
+    }
+
 }
+
+
+
+@-webkit-keyframes loading {
+    from {
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+      -o-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+  @keyframes loading {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(359deg);
+      -moz-transform: rotate(359deg);
+      -webkit-transform: rotate(359deg);
+      -o-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
