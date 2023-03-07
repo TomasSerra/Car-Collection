@@ -23,7 +23,7 @@ export default function Card(props){
             }
         }>
             <center>
-                <div id="image" className="image" style={{backgroundImage: "url("+image+")"}}></div>
+                <div id="image" className="image" style={{backgroundImage: 'url("'+image+'")'}}></div>
                 <h2>{props.title}</h2>
                 <p style={{backgroundColor: props.color}}>{props.collection}</p>
             </center>

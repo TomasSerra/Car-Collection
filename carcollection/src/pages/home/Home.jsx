@@ -11,6 +11,7 @@ import Add from '../add/Add';
 
 export default function Home(props){
     const [warningOpen, setWarningOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
     const [data, setData] = useState({});
     const [infoOpen, setInfoOpen] = useState(false)
     const [addOpen, setAddOpen] = useState(false)
@@ -76,6 +77,7 @@ export default function Home(props){
     {
         remove(ref(db, 'users/' + props.user.uid + "/cars/" + brandInfo + "/" + titleInfo))
         deleteObject(refST(storage, 'users/' + props.user.uid + "/cars/"+ brandInfo + "/" +titleInfo))
+        setDeleteOpen(false)
         backInfo()
     }
 
@@ -125,12 +127,21 @@ export default function Home(props){
                 }
             </section>
         </div>
+        <div className="delete-background" style={{display: deleteOpen ? 'flex' : 'none'}}>
+                <div className="delete-warning">
+                    <h2>Do you want to delete?</h2>
+                    <div className="buttons-container">
+                        <button onClick={deleteCar}>YES</button>
+                        <button onClick={()=>{setDeleteOpen(false)}}>NO</button>
+                    </div>
+                </div>
+            </div>
         <div className="info-container" style={{display: infoOpen ? 'block' : 'none'}}>
             <button className="back-button" onClick={backInfo}>{"< Back"}</button>
             <center>
                 <div className="image-title-container">
                     <div className="image-container">
-                        <div className="image" style={{backgroundImage: "url("+imageInfo+")"}}></div>
+                        <div className="image" style={{backgroundImage: 'url("'+imageInfo+'")'}}></div>
                     </div>
                         <h1 className="titleInfo">{titleInfo}</h1>
                         <h1 className="collectionInfo" style={{backgroundColor: collectionColorInfo}}>{collectionInfo}</h1>
@@ -162,7 +173,7 @@ export default function Home(props){
                         <input disabled placeholder={ownerInfo}/>
                     </div>
                 </div>
-                <button className="delete-btn" onClick={deleteCar}>Delete Car</button>
+                <button className="delete-btn" onClick={()=>{setDeleteOpen(true)}}>Delete Car</button>
             </center>
         </div>
         <Add display={addOpen} back={addPage} userId={props.user.uid} handlePage={props.handlePage}/>
