@@ -275,6 +275,41 @@ html{
         align-items: center;
         margin: 0 auto;
     }
+
+    .loading-container{
+        background-color: rgba(0, 0, 0, 0.782);
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .loading-box{
+            text-align: center;
+            background-color: $primary-color;
+            width: 30%;
+            height: fit-content;
+            border-radius: 20px;
+            padding-bottom: 20px;
+    
+            h2{
+                font-size: 30px;
+                color: $background-color;
+            }
+    
+            img{
+                width: 15%;
+                -webkit-animation: loading 1.5s linear infinite;
+                -moz-animation: loading 1.5s linear infinite;
+                -ms-animation: loading 1.5s linear infinite;
+                -o-animation: loading 1.5s linear infinite;
+                animation: loading 1.5s infinite linear;
+            }
+    
+        }
+    }
 }
 
 
