@@ -14,10 +14,13 @@ export default function Home(props){
     const [deleteOpen, setDeleteOpen] = useState(false);
     const [infoEdit, setInfoEdit] = useState(false);
     const [data, setData] = useState({});
+    const [newData, setNewData] = useState({});
     const [infoOpen, setInfoOpen] = useState(false)
     const [addOpen, setAddOpen] = useState(false)
     const [username, setUsername] = useState(props.user.displayName)
     const [totalCars, setTotalCars] = useState(0)
+    const [ownerFilter, setOwnerFilter] = useState("All")
+    
 
     const [titleInfo, setTitle] = useState("")
     const [brandInfo, setBrand] = useState("")
@@ -30,6 +33,8 @@ export default function Home(props){
     const [ownerInfo, setOwner] = useState("")
     const [imageInfo, setImage] = useState("")
 
+    const owners = ["All", "Tomi", "Santi"]
+
     const [collectionNumberNew, setCollectionNumberNew] = useState("")
     const [seriesNumberNew, setSeriesNumberNew] = useState("")
     const [yearNew, setYearNew] = useState("")
@@ -40,12 +45,13 @@ export default function Home(props){
         const db = getDatabase();
         const starCountRef = ref(db, 'users/'+props.user.uid+'/cars');
         setUsername(props.user.displayName)
-
+        
         
 
         onValue(starCountRef, (snapshot) => {
             var datos = snapshot.val()
             setData(datos)
+            setNewData(datos)
 
             var total = 0
         
@@ -55,6 +61,8 @@ export default function Home(props){
                 })
             })
             setTotalCars(total)
+
+            
             
         });
 
@@ -101,6 +109,26 @@ export default function Home(props){
         deleteObject(refST(storage, 'users/' + props.user.uid + "/cars/"+ brandInfo + "/" +titleInfo))
         setDeleteOpen(false)
         backInfo()
+    }
+
+    function filterChange(filterValue)
+    {
+        var datos = data
+        var total = 0
+        var newData = {}
+        
+    
+        Object.keys(datos ? datos : []).map((brand)=>{
+            newData[brand] = {}
+            Object.values(Object.values(data[brand]).filter((car => (car.owner == filterValue) || (filterValue == "All"))) ? Object.values(data[brand]).filter((car => (car.owner == filterValue) || (filterValue == "All"))) : []).map((car)=>{
+                total += 1
+                Object.assign(newData[brand], {[car.title]:car});
+            })
+
+            
+        })
+        setTotalCars(total)
+        setNewData(newData)
     }
 
     function editButton()
@@ -163,19 +191,35 @@ export default function Home(props){
                     <GrFormAdd size="3rem"/>
                 </button>
             </header>
-            <h2 className="totalCars">Total cars: {totalCars}</h2>
-            <section className="container">
+            <div className="subHeader">
+                <h2 className="totalCars">Total cars: {totalCars}</h2>
+                <div className="filterContainer">
+                    <label>Owner</label>
+                    <select className="ownerFilter" value={ownerFilter} onChange={(e)=>{setOwnerFilter(e.target.value); filterChange(e.target.value)}}>
+                        {
+                        owners.map((owner) => {
+                            return <option key={owners.indexOf(owner)} value={owner}>{owner}</option>
+                        })
+                        }
+                    </select>
+                </div>
+                
+            </div>
             
+            <section className="container">
                 {
-                    Object.keys(data ? data : []).map((brand)=>{
+                    Object.keys(newData ? newData : []).map((brand)=>{
+                        if(Object.values(newData[brand]).length === 0){
+                            return;
+                        }
                         return(
-                            <div key={brand}>
+                            <div key={brand} id={brand}>
                                 <h3 className="title">{brand}</h3>
                                 <hr/>
 
-                                <div className="cards-container">
+                                <div className="cards-container" id={brand+'Container'}>
                                     {
-                                        Object.values(data[brand] ? data[brand] : []).map((car)=>{
+                                        Object.values(Object.values(newData[brand]).filter((car => (car.owner == ownerFilter) || (ownerFilter == "All"))) ? Object.values(newData[brand]).filter((car => (car.owner == ownerFilter) || (ownerFilter == "All"))) : []).map((car)=>{
                                             return(
                                                 < Card key={props.user.uid+car.title} infoOpen={infoOpenButton} userId={props.user.uid} title={car.title} collection={car.collection} collectionColor={car.collectionColor} collectionNumber={car.collectionNumber} seriesNumber={car.seriesNumber} owner={car.owner} year={car.year} date={car.date}  color={car.collectionColor} image={car.title} brand={car.brand}/>
                                             )
