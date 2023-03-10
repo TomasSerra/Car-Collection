@@ -20,6 +20,7 @@ export default function Home(props){
     const [username, setUsername] = useState(props.user.displayName)
     const [totalCars, setTotalCars] = useState(0)
     const [ownerFilter, setOwnerFilter] = useState("All")
+    const [ownersList, setOwnersList] = useState([])
     
 
     const [titleInfo, setTitle] = useState("")
@@ -33,7 +34,6 @@ export default function Home(props){
     const [ownerInfo, setOwner] = useState("")
     const [imageInfo, setImage] = useState("")
 
-    const owners = ["All", "Tomi", "Santi"]
 
     const [collectionNumberNew, setCollectionNumberNew] = useState("")
     const [seriesNumberNew, setSeriesNumberNew] = useState("")
@@ -54,16 +54,19 @@ export default function Home(props){
             setNewData(datos)
 
             var total = 0
+            var owners = new Set()
+            owners.add("All")
         
             Object.keys(datos ? datos : []).map((brand)=>{
                 Object.values(datos[brand] ? datos[brand] : []).map((car)=>{
+                    if(car.owner.trim() != ""){
+                        owners.add(car.owner)
+                    }
                     total += 1
                 })
             })
             setTotalCars(total)
-
-            
-            
+            setOwnersList(Array.from(owners))
         });
 
       },[])
@@ -124,7 +127,6 @@ export default function Home(props){
                 total += 1
                 Object.assign(newData[brand], {[car.title]:car});
             })
-
             
         })
         setTotalCars(total)
@@ -197,8 +199,8 @@ export default function Home(props){
                     <label>Owner</label>
                     <select className="ownerFilter" value={ownerFilter} onChange={(e)=>{setOwnerFilter(e.target.value); filterChange(e.target.value)}}>
                         {
-                        owners.map((owner) => {
-                            return <option key={owners.indexOf(owner)} value={owner}>{owner}</option>
+                        ownersList.map((owner) => {
+                            return <option key={ownersList.indexOf(owner)} value={owner}>{owner}</option>
                         })
                         }
                     </select>

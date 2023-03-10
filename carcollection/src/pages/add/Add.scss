@@ -179,6 +179,8 @@ html{
                 -webkit-appearance: none;
                 -moz-appearance: none;
             }
+
+            
         }
 
         .input-container-row{
@@ -237,6 +239,13 @@ html{
                     padding-left: 10px;
                     width: 89%;
                 }
+
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+                input[type=number] { -moz-appearance:textfield; }
             }
         }
     }
