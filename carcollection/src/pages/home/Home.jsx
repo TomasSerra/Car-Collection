@@ -21,6 +21,7 @@ export default function Home(props){
     const [totalCars, setTotalCars] = useState(0)
     const [ownerFilter, setOwnerFilter] = useState("All")
     const [ownersList, setOwnersList] = useState([])
+    const [imageZoom, setImageZoom] = useState(false)
     
 
     const [titleInfo, setTitle] = useState("")
@@ -173,6 +174,10 @@ export default function Home(props){
         
     }
 
+    function infoImageZoom(){
+        setImageZoom(!imageZoom)
+    }
+
     return(
         <>
         <div className="home-container" id="home-container" style={{overflow: warningOpen ? 'hidden' : 'scroll', display: infoOpen || addOpen ? 'none' : 'block'}}>
@@ -237,24 +242,29 @@ export default function Home(props){
             </section>
         </div>
         <div className="delete-background" style={{display: deleteOpen ? 'flex' : 'none'}}>
-                <div className="delete-warning">
-                    <h2>Do you want to delete?</h2>
-                    <div className="buttons-container">
-                        <button onClick={deleteCar}>YES</button>
-                        <button onClick={()=>{setDeleteOpen(false)}}>NO</button>
-                    </div>
+            <div className="delete-warning">
+                <h2>Do you want to delete?</h2>
+                <div className="buttons-container">
+                    <button onClick={deleteCar}>YES</button>
+                    <button onClick={()=>{setDeleteOpen(false)}}>NO</button>
                 </div>
             </div>
-        <div className="info-container" style={{display: infoOpen ? 'block' : 'none'}}>
+        </div>
+
+        <div className="info-container" style={{display: infoOpen ? 'block' : 'none', overflow: imageZoom ? "hidden" : "scroll"}}>
             <div className="buttons-container">
                 <button className="back-button" onClick={backInfo}>{"< Back"}</button>
                 <button className="edit-button" id="saveEdit" onClick={editButton}>{ infoEdit ? "Save" : "Edit"}</button>
             </div>
             <center>
+                <div className="imageZoom" style={{display: imageZoom ? "flex" : "none"}}>
+                    <button className="back-button" onClick={infoImageZoom}>{"< Back"}</button>
+                    <img src={imageInfo}></img>
+                </div>
                 <div className="image-title-container">
-                    <div className="image-container">
+                    <button className="image-container" onClick={infoImageZoom}>
                         <div className="image" style={{backgroundImage: 'url("'+imageInfo+'")'}}></div>
-                    </div>
+                    </button>
                         <h1 className="titleInfo">{titleInfo}</h1>
                         <h1 className="collectionInfo" style={{backgroundColor: collectionColorInfo}}>{collectionInfo}</h1>
                 </div>

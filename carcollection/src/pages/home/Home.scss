@@ -262,6 +262,37 @@ $card-radius: 10px;
     height: 100vh;
     background-color: $background-color;
 
+    .imageZoom{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto auto;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.694);
+        z-index: 20;
+        height: 100vh;
+
+        .back-button{
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            color: $primary-color;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+
+        img{
+            height: auto;
+            width: 80%;
+            border-radius: 20px;
+        }
+    }
+
     .buttons-container{
         display: flex;
         justify-content: space-between;
@@ -306,6 +337,7 @@ $card-radius: 10px;
             border-radius: 20px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+            border: none;
 
             .image{
                 width: 200px;
