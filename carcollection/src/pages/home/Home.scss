@@ -338,6 +338,7 @@ $card-radius: 10px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             border: none;
+            cursor: pointer;
 
             .image{
                 width: 200px;
@@ -633,6 +634,37 @@ $card-radius: 10px;
             display: flex;
         }
 
+        .imageZoom{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto auto;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.694);
+            z-index: 20;
+            height: 100vh;
+    
+            .back-button{
+                position: absolute;
+                top: 10px;
+                left: 0px;
+                color: $primary-color;
+                background-color: transparent;
+                border: none;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+    
+            img{
+                height: auto;
+                width: 40%;
+                border-radius: 20px;
+            }
+        }
+
         .back-button{
             position: absolute;
             color: $primary-color;
@@ -852,6 +884,37 @@ $card-radius: 10px;
     .info-container{
         center{
             display: flex;
+        }
+
+        .imageZoom{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto auto;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.694);
+            z-index: 20;
+            height: 100vh;
+    
+            .back-button{
+                position: absolute;
+                top: 10px;
+                left: 0px;
+                color: $primary-color;
+                background-color: transparent;
+                border: none;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+    
+            img{
+                height: auto;
+                width: 27%;
+                border-radius: 20px;
+            }
         }
 
         .buttons-container{
