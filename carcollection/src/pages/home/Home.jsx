@@ -251,7 +251,7 @@ export default function Home(props){
             </div>
         </div>
 
-        <div className="info-container" style={{display: infoOpen ? 'block' : 'none', overflow: imageZoom ? "hidden" : "scroll"}}>
+        <div className="info-container" style={{display: infoOpen ? 'block' : 'none'}}>
             <div className="buttons-container">
                 <button className="back-button" onClick={backInfo}>{"< Back"}</button>
                 <button className="edit-button" id="saveEdit" onClick={editButton}>{ infoEdit ? "Save" : "Edit"}</button>
