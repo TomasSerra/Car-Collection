@@ -180,7 +180,7 @@ export default function Home(props){
 
     return(
         <>
-        <div className="home-container" id="home-container" style={{overflow: warningOpen ? 'hidden' : 'scroll', display: infoOpen || addOpen ? 'none' : 'block'}}>
+        <div className="home-container" id="home-container" style={{display: infoOpen || addOpen ? 'none' : 'block'}}>
             <div className="logout-background" id="warning" style={{display: warningOpen ? 'flex' : 'none'}}>
                 <div className="logout-warning">
                     <h2>Do you want to logout?</h2>
