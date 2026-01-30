@@ -104,7 +104,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
   if (isEditing) {
     return (
       <div className="min-h-screen bg-background">
-        <header className="sticky top-0 z-20 bg-background border-b border-border">
+        <header className="sticky top-0 z-20 bg-background border-b border-border pt-safe">
           <div className="flex items-center gap-3 p-4">
             <Button variant="ghost" size="icon" onClick={() => setIsEditing(false)}>
               <ArrowLeft className="w-5 h-5" />
@@ -129,7 +129,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm pt-safe">
         <div className="flex items-center justify-between p-4">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-5 h-5" />

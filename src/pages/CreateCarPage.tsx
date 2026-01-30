@@ -32,7 +32,7 @@ export function CreateCarPage() {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-background border-b border-border">
+      <header className="sticky top-0 z-20 bg-background border-b border-border pt-safe">
         <div className="flex items-center gap-3 p-4">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-5 h-5" />

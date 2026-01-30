@@ -181,7 +181,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
       {/* Header */}
       <header
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-20 bg-hw-blue border-b border-hw-blue transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-20 bg-hw-blue border-b border-hw-blue pt-safe transition-transform duration-300 ${
           headerVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
