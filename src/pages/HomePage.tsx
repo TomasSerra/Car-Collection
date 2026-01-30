@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { useCarsInfinite, useCarCount } from '@/hooks/useCars'
 import { useBrands } from '@/hooks/useBrands'
 import { useOwners } from '@/hooks/useOwners'
+import { useUserProfile } from '@/hooks/useUserProfile'
 import { BrandSection } from '@/components/cars/BrandSection'
 import { CarGridSkeleton } from '@/components/cars/CarGrid'
 import { FAB, SearchBar, FilterSheet, WheelLoader } from '@/components/shared'
@@ -25,6 +26,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const [allCollapsed, setAllCollapsed] = useState(false)
   const [toggleKey, setToggleKey] = useState(0)
   const [headerVisible, setHeaderVisible] = useState(true)
+  const [headerHeight, setHeaderHeight] = useState(0)
   const lastScrollY = useRef(0)
   const headerRef = useRef<HTMLElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -35,6 +37,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const { data: carCount } = useCarCount(targetUserId)
   const { data: brands = [] } = useBrands(targetUserId)
   const { data: owners = [] } = useOwners(targetUserId)
+  const { data: userProfile } = useUserProfile(publicMode ? publicUserId : undefined)
 
   const {
     data,
@@ -91,8 +94,15 @@ export function HomePage({ publicMode = false }: HomePageProps) {
     return () => observer.disconnect()
   }, [handleObserver])
 
-  // Header hide/show on scroll
+  // Measure header height
   useLayoutEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight)
+    }
+  }, [])
+
+  // Header hide/show on scroll
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       const scrollDelta = currentScrollY - lastScrollY.current
@@ -171,7 +181,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
       {/* Header */}
       <header
         ref={headerRef}
-        className={`sticky top-0 z-20 bg-hw-blue border-b border-hw-blue transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-20 bg-hw-blue border-b border-hw-blue transition-transform duration-300 ${
           headerVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -189,7 +199,9 @@ export function HomePage({ publicMode = false }: HomePageProps) {
             )}
             <div className="flex items-center gap-2">
               <Flame className="w-6 h-6 text-hw-orange" />
-              <h1 className="text-xl font-bold text-white">Hot Collection</h1>
+              <h1 className="text-xl font-bold text-white">
+                {publicMode && userProfile?.name ? `${userProfile.name}'s Collection` : 'Hot Collection'}
+              </h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -244,7 +256,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
       </header>
 
       {/* Content */}
-      <main className="p-4">
+      <main className="p-4" style={{ paddingTop: headerHeight + 16 }}>
         {isLoading ? (
           <div className="space-y-4">
             <div className="h-10 bg-muted rounded-lg animate-pulse" />

@@ -32,12 +32,9 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+    <div className="h-[100dvh] flex items-center justify-center p-4 bg-background overflow-hidden">
       <Card className="w-full max-w-md bg-hw-blue border-hw-blue">
         <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <img src="/wheel-icon.svg" alt="Hot Collection" className="w-16 h-16" />
-          </div>
           <CardTitle className="text-2xl flex items-center justify-center gap-2 text-white">
             <Flame className="w-6 h-6 text-hw-orange" />
             Hot Collection
@@ -62,7 +59,7 @@ export function LoginPage() {
                 placeholder="your@email.com"
                 required
                 autoComplete="email"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                className="bg-white/10 border-0 text-white placeholder:text-white/50"
               />
             </div>
 
@@ -76,7 +73,7 @@ export function LoginPage() {
                 placeholder="••••••••"
                 required
                 autoComplete="current-password"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                className="bg-white/10 border-0 text-white placeholder:text-white/50"
               />
             </div>
 

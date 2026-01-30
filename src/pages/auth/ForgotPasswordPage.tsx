@@ -60,9 +60,6 @@ export function ForgotPasswordPage() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-background">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <img src="/wheel-icon.svg" alt="Hot Collection" className="w-16 h-16" />
-          </div>
           <CardTitle className="text-2xl">Reset Password</CardTitle>
           <p className="text-muted-foreground mt-2">
             Enter your email and we'll send you a reset link
