@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef, useLayoutEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Filter, LogIn, Share2, UserPlus, Flame, ChevronsDownUp, ChevronsUpDown } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
@@ -24,6 +24,9 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const [shareToast, setShareToast] = useState(false)
   const [allCollapsed, setAllCollapsed] = useState(false)
   const [toggleKey, setToggleKey] = useState(0)
+  const [headerVisible, setHeaderVisible] = useState(true)
+  const lastScrollY = useRef(0)
+  const headerRef = useRef<HTMLElement>(null)
   const loadMoreRef = useRef<HTMLDivElement>(null)
 
   // Use public userId if in public mode, otherwise use logged in user
@@ -88,6 +91,27 @@ export function HomePage({ publicMode = false }: HomePageProps) {
     return () => observer.disconnect()
   }, [handleObserver])
 
+  // Header hide/show on scroll
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const scrollDelta = currentScrollY - lastScrollY.current
+
+      if (scrollDelta > 10 && currentScrollY > 100) {
+        // Scrolling down
+        setHeaderVisible(false)
+      } else if (scrollDelta < -10) {
+        // Scrolling up
+        setHeaderVisible(true)
+      }
+
+      lastScrollY.current = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleLogout = async () => {
     await logout()
     navigate('/login')
@@ -145,7 +169,12 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-hw-blue border-b border-hw-blue">
+      <header
+        ref={headerRef}
+        className={`sticky top-0 z-20 bg-hw-blue border-b border-hw-blue transition-transform duration-300 ${
+          headerVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
             {!publicMode && (
