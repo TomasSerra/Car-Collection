@@ -10,6 +10,7 @@ import { BrandSection } from '@/components/cars/BrandSection'
 import { CarGridSkeleton } from '@/components/cars/CarGrid'
 import { FAB, SearchBar, FilterSheet, WheelLoader } from '@/components/shared'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
 import type { Car, CarFilters } from '@/types'
 
 interface HomePageProps {
@@ -25,6 +26,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const [filterSheetOpen, setFilterSheetOpen] = useState(false)
   const [shareToast, setShareToast] = useState(false)
   const [successToast, setSuccessToast] = useState(false)
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
   const [allCollapsed, setAllCollapsed] = useState(false)
   const [toggleKey, setToggleKey] = useState(0)
   const [headerVisible, setHeaderVisible] = useState(true)
@@ -138,6 +140,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const handleLogout = async () => {
     await logout()
     navigate('/login')
+    setLogoutDialogOpen(false)
   }
 
   const handleShare = async () => {
@@ -204,7 +207,7 @@ export function HomePage({ publicMode = false }: HomePageProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={handleLogout}
+                onClick={() => setLogoutDialogOpen(true)}
                 className="text-white hover:bg-white/20"
               >
                 <LogIn className="w-5 h-5 rotate-180" />
@@ -362,6 +365,26 @@ export function HomePage({ publicMode = false }: HomePageProps) {
         brands={brands}
         owners={owners}
       />
+
+      {/* Logout Confirmation Dialog */}
+      <Dialog open={logoutDialogOpen} onOpenChange={setLogoutDialogOpen}>
+        <DialogContent onClose={() => setLogoutDialogOpen(false)}>
+          <DialogHeader>
+            <DialogTitle>Log Out</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to log out of your account?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setLogoutDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleLogout}>
+              Log Out
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

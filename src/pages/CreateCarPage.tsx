@@ -38,7 +38,7 @@ export function CreateCarPage() {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-background border-b border-border pt-safe">
+      <header className="fixed top-0 left-0 right-0 z-20 bg-background border-b border-border pt-safe">
         <div className="flex items-center gap-3 p-4">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-5 h-5" />
@@ -48,7 +48,7 @@ export function CreateCarPage() {
       </header>
 
       {/* Form */}
-      <main className="p-4">
+      <main className="p-4 pt-[calc(env(safe-area-inset-top)+72px)]">
         <CarForm
           brands={brands}
           owners={owners}

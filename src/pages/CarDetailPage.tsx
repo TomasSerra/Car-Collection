@@ -104,7 +104,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
   if (isEditing) {
     return (
       <div className="min-h-screen bg-background">
-        <header className="sticky top-0 z-20 bg-background border-b border-border pt-safe">
+        <header className="fixed top-0 left-0 right-0 z-20 bg-background border-b border-border pt-safe">
           <div className="flex items-center gap-3 p-4">
             <Button variant="ghost" size="icon" onClick={() => setIsEditing(false)}>
               <ArrowLeft className="w-5 h-5" />
@@ -113,7 +113,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
           </div>
         </header>
 
-        <main className="p-4">
+        <main className="p-4 pt-[calc(env(safe-area-inset-top)+72px)]">
           <CarForm
             initialData={car}
             brands={brands}
@@ -129,7 +129,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm pt-safe">
+      <header className="fixed top-0 left-0 right-0 z-20 bg-background/80 backdrop-blur-sm pt-safe">
         <div className="flex items-center justify-between p-4">
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
             <ArrowLeft className="w-5 h-5" />
@@ -153,7 +153,7 @@ export function CarDetailPage({ publicMode = false }: CarDetailPageProps) {
       </header>
 
       {/* Image */}
-      <div className="w-full">
+      <div className="w-full pt-[calc(env(safe-area-inset-top)+60px)]">
         <img
           src={car.imageUrl}
           alt={car.title}
