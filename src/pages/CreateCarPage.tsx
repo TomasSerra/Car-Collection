@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
@@ -11,6 +12,11 @@ import type { CarFormData } from '@/types'
 export function CreateCarPage() {
   const navigate = useNavigate()
   const { user } = useAuth()
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const { data: brands = [] } = useBrands(user?.uid)
   const { data: owners = [] } = useOwners(user?.uid)
@@ -26,7 +32,7 @@ export function CreateCarPage() {
       imageFile,
     })
 
-    navigate('/')
+    navigate('/', { state: { carCreated: true } })
   }
 
   return (

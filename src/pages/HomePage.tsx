@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef, useLayoutEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { Filter, LogIn, Share2, UserPlus, Flame, ChevronsDownUp, ChevronsUpDown } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useCarsInfinite, useCarCount } from '@/hooks/useCars'
@@ -20,9 +20,11 @@ export function HomePage({ publicMode = false }: HomePageProps) {
   const { user, logout } = useAuth()
   const { userId: publicUserId } = useParams<{ userId: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
   const [filters, setFilters] = useState<CarFilters>({})
   const [filterSheetOpen, setFilterSheetOpen] = useState(false)
   const [shareToast, setShareToast] = useState(false)
+  const [successToast, setSuccessToast] = useState(false)
   const [allCollapsed, setAllCollapsed] = useState(false)
   const [toggleKey, setToggleKey] = useState(0)
   const [headerVisible, setHeaderVisible] = useState(true)
@@ -100,6 +102,17 @@ export function HomePage({ publicMode = false }: HomePageProps) {
       setHeaderHeight(headerRef.current.offsetHeight)
     }
   }, [])
+
+  // Handle car created success
+  useEffect(() => {
+    if (location.state?.carCreated) {
+      window.scrollTo(0, 0)
+      setSuccessToast(true)
+      setTimeout(() => setSuccessToast(false), 2000)
+      // Clear the state to prevent showing toast on refresh
+      window.history.replaceState({}, document.title)
+    }
+  }, [location.state])
 
   // Header hide/show on scroll
   useEffect(() => {
@@ -330,6 +343,13 @@ export function HomePage({ publicMode = false }: HomePageProps) {
       {shareToast && (
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-card border border-border rounded-lg px-4 py-2 shadow-lg">
           <p className="text-sm">Link copied to clipboard!</p>
+        </div>
+      )}
+
+      {/* Success Toast */}
+      {successToast && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-green-600 border border-green-500 rounded-lg px-4 py-2 shadow-lg">
+          <p className="text-sm text-white">Car added successfully!</p>
         </div>
       )}
 
