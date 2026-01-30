@@ -1,0 +1,60 @@
+import { cn } from '@/lib/utils'
+
+interface WheelLoaderProps {
+  size?: number
+  className?: string
+}
+
+export function WheelLoader({ size = 40, className }: WheelLoaderProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={cn('animate-spin-slow', className)}
+    >
+      {/* Outer rim */}
+      <circle
+        cx="50"
+        cy="50"
+        r="45"
+        fill="none"
+        stroke="#262626"
+        strokeWidth="8"
+      />
+      {/* Inner rim */}
+      <circle
+        cx="50"
+        cy="50"
+        r="35"
+        fill="none"
+        stroke="#1A1A1A"
+        strokeWidth="4"
+      />
+      {/* Hub */}
+      <circle cx="50" cy="50" r="12" fill="#0066CC" />
+      {/* Spokes */}
+      <g stroke="#FF6600" strokeWidth="4" strokeLinecap="round">
+        <line x1="50" y1="20" x2="50" y2="38" />
+        <line x1="50" y1="62" x2="50" y2="80" />
+        <line x1="20" y1="50" x2="38" y2="50" />
+        <line x1="62" y1="50" x2="80" y2="50" />
+        <line x1="28.79" y1="28.79" x2="41.21" y2="41.21" />
+        <line x1="58.79" y1="58.79" x2="71.21" y2="71.21" />
+        <line x1="71.21" y1="28.79" x2="58.79" y2="41.21" />
+        <line x1="41.21" y1="58.79" x2="28.79" y2="71.21" />
+      </g>
+      {/* Center cap */}
+      <circle cx="50" cy="50" r="6" fill="#0A0A0A" />
+    </svg>
+  )
+}
+
+export function FullPageLoader() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-background">
+      <WheelLoader size={80} />
+      <p className="mt-4 text-muted-foreground">Loading...</p>
+    </div>
+  )
+}
